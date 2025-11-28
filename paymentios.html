@@ -419,7 +419,7 @@ const observer = new MutationObserver(() => {
   const vaultToken = target.value;
 
   if (vaultToken && vaultToken.length > 0) {
-    window.parent.postMessage({ vaultToken }, "*");
+   window.location.href="myapp://vault?token=" + encodeURIComponent(vaultToken);
   }
 });
 
