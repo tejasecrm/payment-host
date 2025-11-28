@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Deluxe Payment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover,user-scalable=no,maximum-scale=1.0">
+
+  <style id="CustomCSS">
+ 
+:root {
+  --df-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                    Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --df-base-font-size: 16px!important;
+  --df-text: #212529;
+  --df-muted: #6c757d;
+  --df-border: #ced4da;
+  --df-border-strong: #adb5bd;
+  --df-bg: #ffffff;
+  --df-bg-muted: #f8f9fa;
+
+  --df-primary: #0d6efd;          
+  --df-primary-hover: #0b5ed7;
+  --df-success: #198754;
+  --df-danger: #dc3545;
+  --df-warning: #ffc107;
+
+  --df-focus-ring: rgba(13,110,253,.25);  
+  --df-radius: 0.5rem;                   
+  --df-input-padding-y: 0.55rem;
+  --df-input-padding-x: 0.75rem;
+}
+
+html, body {
+  font-family: var(--df-font-family);
+  font-size: var(--df-base-font-size)!important;
+  color: var(--df-text);
+  background: var(--df-bg);
+  margin-top: 10px;
+  min-height: 450px;
+  height: 100%;
+  overflow: hidden;
+}
+
+
+
+
+#dppPaymentContainer {
+  max-width: 880px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.container-payment,
+.container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.mt-0 { margin-top: 0 !important; }
+.mt-1 { margin-top: .25rem !important; }
+.mt-2 { margin-top: .5rem !important; }
+.mt-3 { margin-top: 1rem !important; }
+.mt-4 { margin-top: 1.5rem !important; }
+.mt-5 { margin-top: 3rem !important; }
+
+.mb-0 { margin-bottom: 0 !important; }
+.mb-1 { margin-bottom: .25rem !important; }
+.mb-2 { margin-bottom: .5rem !important; }
+.mb-3 { margin-bottom: 1rem !important; }
+.mb-4 { margin-bottom: 1.5rem !important; }
+.mb-5 { margin-bottom: 3rem !important; }
+
+.p-0 { padding: 0 !important; }
+.p-1 { padding: .25rem !important; }
+.p-2 { padding: .5rem !important; }
+.p-3 { padding: 1rem !important; }
+.p-4 { padding: 1.5rem !important; }
+.p-5 { padding: 3rem !important; }
+
+.w-100 { width: 100% !important; }
+
+.form-label,
+label {
+  display: inline-block;
+  margin-bottom: .5rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.form-text,
+.text-muted {
+  display: block;
+  margin-top: .25rem;
+  font-size: .875rem!important;
+  color: var(--df-muted);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+select,
+textarea,
+.form-control {
+  display: block;
+  width: 100%;
+  padding: var(--df-input-padding-y) var(--df-input-padding-x);
+  font-size: 1rem!important;
+  line-height: 1.5;
+  color: var(--df-text);
+  background-color: var(--df-bg);
+  background-clip: padding-box;
+  border: 1px solid var(--df-border);
+  border-radius: var(--df-radius);
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, background-color .15s ease-in-out;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9aa0a6;
+}
+
+input:hover,
+select:hover,
+textarea:hover,
+.form-control:hover {
+  border-color: var(--df-border-strong);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.form-control:focus {
+  border-color: var(--df-primary);
+  outline: 0;
+  box-shadow: 0 0 0 .25rem var(--df-focus-ring);
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled,
+.form-control:disabled {
+  background-color: var(--df-bg-muted);
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.is-valid,
+.form-control.is-valid {
+  border-color: var(--df-success);
+  padding-right: 2.25rem;
+}
+
+.is-invalid,
+.form-control.is-invalid {
+  border-color: var(--df-danger);
+  padding-right: 2.25rem;
+}
+
+.valid-feedback,
+.invalid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: .25rem;
+  font-size: .875rem;
+}
+
+.form-control.is-valid ~ .valid-feedback {
+  display: block;
+  color: var(--df-success);
+}
+
+.form-control.is-invalid ~ .invalid-feedback {
+  display: block;
+  color: var(--df-danger);
+}
+
+#firstname, #lastname, #address,
+#ccNum, #ccExpry, #cc526,
+#sequence, #odometer, #dlNumber {
+  min-height: 42px;
+}
+
+#divnumwrap, #divexprywrap, #divcvvwrap {
+  width: 100%;
+  margin-top: .5rem;
+}
+
+#divtrakwrap { display: none !important; }
+
+button,
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--df-primary);
+  border: 1px solid var(--df-primary);
+  padding: .55rem 1rem;
+  font-size: 1rem!important;
+  border-radius: var(--df-radius);
+  transition: color .15s ease-in-out;
+   background-color: .15s ease-in-out;
+    border-color: .15s ease-in-out;
+     box-shadow: .15s ease-in-out;
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--df-primary-hover);
+  border-color: var(--df-primary-hover);
+}
+
+button:active,
+.btn:active {
+  transform: translateY(1px);
+}
+
+#dpphpfsubmittere {
+  background-color: var(--df-success);
+  border-color: var(--df-success);
+     color: #fff;
+
+}
+#dpphpfsubmittere:hover {
+  background-color: #157347; 
+  border-color: #146c43;
+   color: #fff;
+}
+
+.btn-outline-secondary {
+  color: var(--df-primary);
+  background-color: transparent;
+  border-color: var(--df-primary);
+}
+.btn-outline-secondary:hover {
+  color: #fff;
+  background-color: var(--df-primary);
+  border-color: var(--df-primary);
+}
+
+.btn-block, .w-100-btn {
+  width: 100%;
+}
+
+.table_component {
+  overflow: auto;
+  width: 100%;
+  border-radius: .25rem;
+}
+
+.table_component table {
+  border: 1px solid var(--df-border);
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.table_component th,
+.table_component td {
+  border: 1px solid var(--df-border);
+  padding: .5rem;
+  text-align: left;
+}
+
+.table_component th {
+  background-color: #e9ecef;
+  color: #000;
+}
+
+#dppjssdk {
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid var(--df-border);
+  border-radius: var(--df-radius);
+  box-shadow: 0 2px 12px rgba(16,24,40,.08);
+}
+.card-body { padding: 1rem; }
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+.col,
+[class^="col-"] {
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+@media (max-width: 576px) {
+
+  #dppPaymentContainer{
+    margin-top: 30px;
+  }
+  #dppPaymentContainer,
+  .container-payment,
+  .container {
+    padding-inline: .75rem;
+  }
+
+  .form-label {
+    font-size: .95rem!important;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="password"],
+  select,
+  textarea,
+  .form-control {
+    font-size: 1rem;
+    min-height: 44px;         
+  }
+
+  #dppjssdk {
+    height: 75vh !important;  
+            display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-left: 5vw !important;
+        margin-right: 5vw !important;
+        width: 100% !important;
+  }
+
+  .row { margin-left: 0; margin-right: 0; }
+  .col, [class^="col-"] { width: 100%; padding-left: 0; padding-right: 0; }
+
+  button, .btn, #dpphpfsubmittere {
+    width: 100%;
+    padding: .75rem 1rem;
+    font-size: 1.05rem!important;
+    border-radius: .6rem;
+  }
+
+  .table_component th, .table_component td {
+    font-size: .9rem!important;
+    padding: .5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  #dppPaymentContainer { padding: 1.25rem; }
+  .form-label { font-size: 1rem; }
+}
+
+@media (min-width: 992px) {
+  #dppPaymentContainer { max-width: 960px; }
+}
+
+@media (min-width: 1200px) {
+  #dppPaymentContainer { max-width: 1040px; }
+}
+
+:focus-visible {
+  outline: 2px solid var(--df-primary);
+  outline-offset: 2px;
+}
+
+label[for] { cursor: pointer; }
+
+.invalid-feedback {
+  color: var(--df-danger);
+}
+
+.section-title {
+  font-weight: 700;
+  font-size: 1.1rem!important;
+  margin: 1rem 0 .75rem;
+  color: #344767;
+  letter-spacing: .2px;
+}
+
+  </style>
+</head>
+<body style="width: 100%;max-width: 80%;">
+
+  <!-- Hidden token field used by Deluxe -->
+  <input id="pymtResponse" type="hidden" />
+
+  <!-- Deluxe Hosted Form -->
+  <script
+    type="text/javascript"
+    id="dlxhpfsdk"
+    src="https://hostedform2.deluxe.com/iframeloader.js"
+    data-xtoken="656AB81C-2791-4DAA-91A6-1929E9A42ADE"
+    data-xapp="B5sz2SL6RhwJGUvZAKn7S7SeJQbvAckU"
+    data-xrtype="Create Vault"
+    data-xautoprompt="false"
+    data-xpm="1"
+    data-xbtntext="Add Card Details"
+    data-xtarget-id="pymtResponse"
+    data-xcss-id="CustomCSS">
+  </script>
+
+  <!-- Messaging Handler -->
+  <script>
+   const target = document.getElementById("pymtResponse");
+
+const observer = new MutationObserver(() => {
+  const vaultToken = target.value;
+
+  if (vaultToken && vaultToken.length > 0) {
+    window.parent.postMessage({ vaultToken }, "*");
+  }
+});
+
+observer.observe(target, { attributes: true, childList: true, subtree: true });
+  </script>
+
+</body>
+</html>
