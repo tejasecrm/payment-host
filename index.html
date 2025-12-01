@@ -20,7 +20,7 @@
 
   --df-primary: #0d6efd;          
   --df-primary-hover: #0b5ed7;
-  --df-success: #198754;
+  --df-success: #ed7625;
   --df-danger: #dc3545;
   --df-warning: #ffc107;
 
@@ -35,10 +35,10 @@ html, body {
   font-size: var(--df-base-font-size)!important;
   color: var(--df-text);
   background: var(--df-bg);
-  margin-top: 10px;
-  min-height: 450px;
+  margin-top: -10px;
+  min-height: 100%;
   height: 100%;
-  overflow: hidden;
+  
 }
 
 
@@ -181,7 +181,7 @@ textarea:disabled,
 #firstname, #lastname, #address,
 #ccNum, #ccExpry, #cc526,
 #sequence, #odometer, #dlNumber {
-  min-height: 42px;
+  min-height: 35px;
 }
 
 #divnumwrap, #divexprywrap, #divcvvwrap {
@@ -231,8 +231,8 @@ button:active,
 
 }
 #dpphpfsubmittere:hover {
-  background-color: #157347; 
-  border-color: #146c43;
+  background-color: #ed7625; 
+  border-color: #ed7625;
    color: #fff;
 }
 
@@ -304,7 +304,7 @@ button:active,
 @media (max-width: 576px) {
 
   #dppPaymentContainer{
-    margin-top: 30px;
+    margin-top: -10px;
   }
   #dppPaymentContainer,
   .container-payment,
@@ -325,11 +325,11 @@ button:active,
   textarea,
   .form-control {
     font-size: 1rem;
-    min-height: 44px;         
+    min-height: 40px;         
   }
 
   #dppjssdk {
-    height: 75vh !important;  
+    height: 85vh !important;  
             display: flex;
         flex-direction: column;
         justify-content: center;
