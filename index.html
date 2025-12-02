@@ -415,50 +415,13 @@ label[for] { cursor: pointer; }
 
   <!-- Messaging Handler -->
 
-<script>
-  // IMPORTANT: Set this to your app's exact origin
-  // Dev (Ionic CLI): 'http://localhost:8100'
-  // Prod: e.g., 'https://yourapp.example.com'
-  const parentOrigin = 'http://localhost:8100'; // <-- change this
 
-  const target = document.getElementById('pymtResponse');
-
-  function sendToken(token) {
-    if (!token) return;
-    window.parent.postMessage({ type: 'PAYMENT_RESPONSE', pymtresponse: token }, parentOrigin);
-  }
-
-  // 1) Event listeners (preferred if the SDK dispatches them)
-  target.addEventListener('change', () => sendToken(target.value));
-  target.addEventListener('input', () => sendToken(target.value));
-
-  // 2) Fallback: small polling loop (covers property changes that don’t emit events)
-  let last = '';
-  const poll = () => {
-    const cur = target.value || '';
-    if (cur && cur !== last) {
-      last = cur;
-      sendToken(cur);
-    }
-  };
-  const pollId = setInterval(poll, 250);
-
-  // 3) Optional: MutationObserver for attribute changes (just in case the SDK uses setAttribute)
-  const observer = new MutationObserver(() => sendToken(target.value));
-  observer.observe(target, { attributes: true, attributeFilter: ['value'] });
-
-  // 4) Cleanup if the page is navigated away
-  window.addEventListener('beforeunload', () => {
-    clearInterval(pollId);
-    observer.disconnect();
-  });
-</script>
 
 <script>
   // IMPORTANT: Set this to your app's exact origin
   // Dev (Ionic CLI): 'http://localhost:8100'
   // Prod: e.g., 'https://yourapp.example.com'
-  const parentOrigin = 'http://localhost:8100'; // <-- change this
+  const parentOrigin = '*'; // <-- change this
 
   const target = document.getElementById('pymtResponse');
 
